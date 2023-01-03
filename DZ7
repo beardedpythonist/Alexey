@@ -1,0 +1,82 @@
+#1
+ls1 = [1, 5, 6, 9]
+dict2 = {ls1[x]: ls1[x] for x  in range(len(ls1))}
+print(dict2)
+dict3 = {}
+for c in ls1:
+    dict3[c] = c
+print(dict3)
+
+def slovar(ls1):
+    slov4 = {ls1[x]: ls1[x] for x  in range(len(ls1))}
+    return print(slov4)
+slovar(ls1)
+
+
+def slovarj2(ls1):
+    ls2 = ls1.copy()
+    slo5  = dict(zip(ls2, ls1))
+    return  print(slo5)
+slovarj2(ls1)
+
+
+#2
+songsdict = {
+'World in My Eyes': 4.76,
+'Sweetest Perfection': 5.43,
+'Personal Jesus': 4.56,
+'Halo': 4.30,
+'Waiting for the Night': 6.07,
+'Enjoy the Silence': 4.6,
+'Policy of Truth': 4.88,
+'Blue Dress': 4.18,
+'Clean': 5.68,
+}
+ls1 = []
+for key, val in songsdict.items():
+    ls1.append(val)
+print(sum(ls1))
+ls5 = []
+for key, val in songsdict.items():
+    if val > 5:
+        x = key, val
+        ls5.append(x)
+print(ls5)
+
+slov_odnoslovo = {}
+spis3 =[]
+for key, val in songsdict.items():
+    if ' ' not in key:
+        x = key, val
+        spis3.append(x)
+slov_odnoslovo = dict(spis3)
+print(slov_odnoslovo)
+
+
+#3
+dict_scores = {1:['А', 'В', 'Е', 'И', 'Н', 'О', 'Р', 'С', 'Т'], 2: ['Д', 'К', 'Л', 'М', 'П', 'У' ],
+               3: ['Б', 'Г', 'Ё','Ь', 'Я'], 4: ['Й', 'Ы'], 5: ['Ж', 'З', 'Х',' Ц', 'Ч'], 8 : ['Ш', 'Э', 'Ю' ],
+               10 : ['Ф', 'Щ', 'Ъ']
+               }
+s1 = input().upper()
+total = 0
+for key, value in dict_scores.items():
+    for c in s1:
+        if c in value:
+         total = total + key
+print(total)
+
+
+#4
+emails = {'gmail.com': ['alena.semyonova', 'ivan.polekhin', 'marina_abrabova'],
+'yandex.ru': ['ekaterina_ivanova', 'glebova_nastya'],
+'mail.ru': ['roman.kolosov', 'ilya_gromov', 'masha.yashkina']}
+for key, val in emails.items():
+    for i in range(len(val)):
+        print(f'{key}@{val[i]}')
+
+
+#5
+list1  = ['orange', 'apple', 'mango', 'banana', 'fruits']
+slov = {x: list1[x - 1] for x in range(1,6)}
+print(slov)

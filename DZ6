@@ -1,0 +1,67 @@
+#1
+from random import *
+kar = (1,)
+
+#2
+kar2 = tuple()
+for c in range(10):
+    x = randint(-100, 100)
+    kar2 = kar2 + (x,)
+print(kar2)
+
+max1 = sorted(kar2)[-1]
+print(max1)
+max2 = max(kar2)
+print(max2)
+
+x = kar2[0]
+for c in kar2:
+    if c > x:
+        x = c
+print(x)
+
+# 3
+kar3 = tuple()
+for c in range(10):
+    kar3 += (c,)
+print(kar3)
+sum1 = sum(kar3)
+print(sum1)
+
+sum2 = 0
+for c in kar3:
+    sum2 += c
+print(sum2)
+
+
+#4
+long_word = ( 'т', 'т', 'а', 'и', 'и', 'а', 'и',
+ 'и', 'и', 'т', 'т', 'а', 'и', 'и',
+ 'и', 'и', 'и', 'т', 'и')
+long_word = sorted(long_word)
+print(long_word)
+а= long_word.count('а')
+и = long_word.count('и')
+т = long_word.count('т')
+print(f'Буква "и" встречается {и} раз ')
+print(f'Буква "а" встречается {а} раз ')
+print(f'Буква "т" встречается {т} раз ')
+
+count1 = 0
+count2 = 0
+count3 = 0
+for c in long_word:
+    if 'и' in c:
+        count1 += 1
+    if 'а' in c:
+        count2 += 1
+    if 'т' in c:
+        count3 += 1
+print(f'Буква "и" встречается {count1} раз ')
+print(f'Буква "a" встречается {count1} раз ')
+print(f'Буква "t" встречается {count1} раз ')
+# третий способ
+slov={}
+for c in long_word:
+    slov[c] = slov.get(c, 0) + 1
+print(slov)
