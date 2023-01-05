@@ -34,5 +34,4 @@ while s1 == 'YES':
             flowers_wse.remove(s2)
         s1 = input("хотите продолжить? 'YES' - если да, 'NO' - если нет  ")
         c = 0
-
 print(slov1)
