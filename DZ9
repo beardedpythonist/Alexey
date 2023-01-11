@@ -1,0 +1,60 @@
+1. Ввести в файл 'input.txt' 2 числа в одну строку через пробел.
+Вывести в файл 'output.txt' их разность.
+
+
+
+n1, n2  = input(),  input()
+with open('input.txt', 'w') as f:
+    f.write(n1)
+    f.write(' ')
+    f.write(n2)
+
+with open('input.txt') as f1:
+    contenct = f1.readline()
+for c in range(len(contenct)):
+    if contenct[c]  == ' ':
+        x = (int(contenct[:c]) + int(contenct[c + 1:]))
+
+with open('output.txt' , 'w')  as f1:
+    f1.write(str(x))
+
+________________________
+import os
+# 1) создание папки и файлов
+# os.chdir(r"C:\Users\Светлана\Desktop")
+# os.mkdir('arhiv')
+# os.chdir(r"C:\Users\Светлана\Desktop\arhiv")
+# print(os.getcwd())
+# with open('text_1.txt', 'x') as f:
+#     pass
+# with open('text_2.txt', 'x') as f1:
+#     pass
+# with open('text_3.txt', 'x') as f2:
+#     pass
+#2 переимонование фалов
+# os.chdir(r"C:\Users\Светлана\Desktop\arhiv")
+# os.rename('text_1.txt','rename_1.txt')
+# os.rename('text_2.txt','rename_2.txt')
+# os.rename('text_3.txt', 'rename_3.txt')
+
+# #3 удаление фалов и папки
+# os.chdir(r"C:\Users\Светлана\Desktop\arhiv")
+# os.remove('rename_1.txt')
+# os.remove('rename_2.txt')
+# os.remove('rename_3.txt')
+# os.chdir(r"C:\Users\Светлана\Desktop")
+# os.removedirs(r"C:\Users\Светлана\Desktop\arhiv")
+
+
+
+### строки символы
+s1 = ''
+with open('stroki_simwoly') as f:
+    content = f.readlines()
+    print(len(content))
+for string in content:
+    string = string.replace(' ', '')
+    s1  = s1 + string.strip('\n')
+print(len(s1))
+
+
