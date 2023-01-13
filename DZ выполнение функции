@@ -1,0 +1,206 @@
+1......сумма цифр
+
+def print_digit_sum(n):
+     ls = []
+     while n != 0:
+          x = n % 10
+          ls.append(x)
+          n = n // 10
+     return sum(ls)
+n = int(input())
+print(print_digit_sum(n))
+
+2......банковский счет
+def bank(a, year):
+     x = 0
+     while x != year:
+          a = a  + (a * 0.1)
+          x += 1
+     return a
+
+a = int(input())
+year = int(input())
+print(bank(a,year))
+
+3......дата
+def date(d=20, m=5, year=1955):
+     flag1 = False
+     flag2 = False
+     flag3 = False
+     flag_vys = False
+     ls1 = [4,6,9,11]
+     ls2 =[1,3,5,7, 8, 10, 12]
+     ls_day =[]
+     if 1<= d <= 30 and m in ls1:
+          flag1 = True
+          ls_day.append(flag1)
+     if 1<= d <= 31 and m in ls2:
+          flag2 = True
+          ls_day.append(flag2)
+     if 1 <= d <= 28 and m == 2:
+          flag3 = True
+          ls_day.append(flag3)
+     if (year % 4 == 0 or year % 400 == 0) and year % 100 != 0:
+          if d == 29 and m == 2:
+              flag_vys = True
+              ls_day.append(flag_vys)
+     day_flag = any(ls_day)
+     ls_all = []
+     ls_all.append(day_flag)
+     if 1 <= m  <= 12:
+          month_flag = True
+          ls_all.append(month_flag)
+     if  0 <= year <= 2023:
+          year_flag = True
+          ls_all.append(year_flag)
+     x = all(ls_all)
+     return x
+d = 3
+m =30
+year = 1984
+print(date(d, m, year))
+
+
+4............найти а в строке ..........
+
+
+def podchet(s1, n):
+     ls =[]
+     for c in range(len(s1)):
+          if s1[c] == n:
+               ls.append(c)
+s1 = input()
+n = input()
+print(podchet(s1,n))
+
+
+5 ....................один знак
+def is_one_away(word1, word2):
+
+    count = 0
+    for c in word1:
+        if c in word2:
+            count += 1
+    if len(word1) == len(word2) and count == len(word1) - 1:
+        return True
+    else:
+        return False
+w = input()
+w1 =  input()
+print(is_one_away(w,w1))
+
+
+6 .....................
+ def polindr(s1):
+     s1 = input().lower()
+     for c in s1:
+          if c in '!@#$%^&*()_+|}{[]"?><,./;-_— ':
+               s1 = s1.replace(c, '')
+     s2 = s1[::-1]
+     if s1 == s2:
+          return True
+     else:
+          return False
+s1 = input()
+polindr(s1)
+
+7................. пароль из чисел
+def password(word):
+     list1 = word.split(':')
+     s_polind = list1[0]
+     s_polind2 = s_polind[::-1]
+     ls_total = []
+     if s_polind2 == s_polind:
+          flag1 = True
+          ls_total.append(flag1)
+     s_prost = int(list1[1])
+     ls = []
+     for c in range(1, s_prost + 1):
+          if s_prost % c == 0:
+            ls.append(c)
+     if len(ls) == 2:
+          flag2 =True
+          ls_total.append(flag2)
+     s_chetn = int(list1[2])
+     if s_chetn % 2 == 0:
+          flag3 = True
+          ls_total.append(flag3)
+     f = all(ls_total)
+     return f
+slovo = input()
+print(password(slovo))
+
+8.................пароль из условий .
+ import string
+def password(parol):
+     ls = []
+     if len(parol) > 8:
+          flag1  = True
+          ls.append(flag1)
+
+     for c in parol:
+          if c in string.ascii_lowercase:
+               flag2 = True
+               ls.append(flag2)
+          if c in string.ascii_uppercase:
+               flag3 =  True
+               ls.append(flag3)
+          if c in string.digits:
+               flag4 = True
+               ls.append(flag4)
+     f = all(ls)
+     return f
+parol = input()
+print(password(parol))
+
+9...................простое число
+def prostoe(n):
+    ls = []
+    for c in range(1, n + 1):
+        if n % c == 0:
+            ls.append(c)
+    if len(ls) == 2:
+        return True
+    else:
+        return False
+
+print(prostoe(n=30))
+
+
+
+10........первое за простым ...........
+def prostoe(n):
+    ls = []
+    n = n + 1
+    while len(ls) != 2:
+
+        for c in range(1, n + 1):
+            if n % c == 0:
+                ls.append(c)
+        if len(ls) == 2:
+            return n
+        else:
+            ls.clear()
+            n += 1
+n = int(input())
+print(prostoe(n))
+
+
+11......... Скобки
+
+s1 = input()
+n = 0
+for c in range(len(s1)):
+    if s1[c] == '(':
+        n += 1
+    if s1[c] == ')':
+        n -= 1
+        if n < 0:
+            flag1 = False
+            break
+        else:
+            if n == 0:
+                flag1 = True
+
+print(flag1)
+
