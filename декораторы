@@ -1,0 +1,34 @@
+def bol_bukwy(func):
+    def wrapper():
+        return func().upper()
+    return wrapper
+
+def text():
+    return 'Мама мыла раму'
+
+bolsh = bol_bukwy(text)
+print(text())
+print(bolsh())
+
+2 вариант .................(сразу декарирует!!!).
+def bol_bukwy(func):
+    def wrapper():
+        return func().upper()
+    return wrapper
+@bol_bukwy
+def text():
+    return 'Мама мыла раму'
+
+print(text())
+
+
+3 ............крутой пример с аргументами
+def add_doll(func):
+    def wrapper(*args, **kwargs):
+        return func(*args,**kwargs) + ' ' + '$'
+    return wrapper
+@add_doll
+def give_price(item):
+    slov = {'Идиот':10,'Нос':15,'Онегин':17}
+    return str(slov[item])
+print(give_price('Нос'))
