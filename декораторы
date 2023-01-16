@@ -32,3 +32,27 @@ def give_price(item):
     slov = {'Идиот':10,'Нос':15,'Онегин':17}
     return str(slov[item])
 print(give_price('Нос'))
+
+
+
+4........варинт DZ
+
+def plus_perim(func):
+
+    def wrapper(*args):
+        result = func(*args)
+        print('Площаль ровна: ', result)
+        total = args[0] + args[1] + args[2]
+        print('Периметр равен: ', total)
+        return total
+    return wrapper
+@plus_perim
+def plosh_tr(a, b, c):
+    p = (a + b + c) / 2
+    s = (p * (p - a) * (p - b) * (p - c)) ** 0.5
+    return s
+
+print(plosh_tr(7,8,5))
+
+
+
