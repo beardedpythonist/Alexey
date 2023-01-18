@@ -1,0 +1,20 @@
+#  наследование. от мебели передаются методы и свойства, а в классе шкаф еще добавляется и свой
+class Mebel:
+    material = 'derewo'
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
+    def give_details(self):
+        print(self.name, self.price, self.material)
+
+class Shkaf(Mebel):
+    def __init__(self, razmery):
+        self.razmery =razmery
+
+shkaf1 = Shkaf('500 * 100')
+print(shkaf1.razmery)
+shkaf1.price = 200
+print(shkaf1.price)
+shkaf1.name =  'slovjansliy'
+print(shkaf1.name)
+shkaf1.give_details()
