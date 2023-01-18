@@ -38,3 +38,4 @@ class Human:
             x.info() # вызов метода инфо
 Human.sozdaniye()   # вызов статического метода создание объектов
 print('итого создано: ', Human.counter)
+
