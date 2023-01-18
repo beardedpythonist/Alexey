@@ -7,33 +7,34 @@ class Human:
     list_name_zh = ['Aubrey Gilmore', 'Avice Reynolds', 'Theresa Bradford', 'Shonda Douglas', 'Karen Sanders']
     age = range(18, 100)
     charakter = ['холерик', 'сангвиник', 'меланхолик', 'флегматик']
+    ls_job = ['рабочий', 'безработный']
 
-    def __init__(self, pol, name, age, charakter):
+    def __init__(self, pol, name, age, charakter, job):
         self.pol = pol
         self.name = name
         self.age = age
         self.charakter = charakter
+        self.job = job
         Human.counter += 1
     def info(self):
-        print(self.name, self.pol, self.age, self.charakter)
-        return
+        print(self.name, self.pol, self.age, self.charakter, self.job)
+
     def life(self):
         pass
-
-def sozdaniye():
-    num = randrange(2, 6)
-    for c in range(num):
-        pol = choice(Human.ls)
-        charakter = choice(Human.charakter)
-        if pol == 'жен':
-            name = choice(Human.list_name_zh)
-        else:
-            name = choice(Human.list_name_m)
-        age  = choice(Human.age)
-        x = input('введи имя экземпляра ')
-        x = Human(pol, name, age, charakter)    # создание экземпляра класса
-        x.info()
-
-sozdaniye()
+    @staticmethod
+    def sozdaniye():
+        num = randrange(2, 6)
+        for c in range(num):
+            pol = choice(Human.ls)
+            charakter = choice(Human.charakter)
+            if pol == 'жен':
+                name = choice(Human.list_name_zh)
+            else:
+                name = choice(Human.list_name_m)
+            age  = choice(Human.age)
+            job =  choice(Human.ls_job)
+            x = input('введи имя экземпляра ')
+            x = Human(pol, name, age, charakter, job)    # создание экземпляра класса
+            x.info() # вызов метода инфо
+Human.sozdaniye()   # вызов статического метода создание объектов
 print('итого создано: ', Human.counter)
-
