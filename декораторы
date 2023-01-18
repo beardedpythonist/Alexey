@@ -37,6 +37,7 @@ print(give_price('Нос'))
 
 4........варинт DZ
 
+
 def plus_perim(func):
 
     def wrapper(*args):
@@ -53,6 +54,5 @@ def plosh_tr(a, b, c):
     return s
 
 print(plosh_tr(7,8,5))
-
 
 

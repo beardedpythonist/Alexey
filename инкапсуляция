@@ -1,0 +1,13 @@
+class Person:
+    def __init__(self, name, age=0):
+        self.name = name
+        self.__age = age
+    def display(self):
+        print(self.name)
+        print(self.__age)
+person = Person('Vasja', 30)
+
+person.display() # метод display() принпадлежит классу
+
+print(person.name)  # атрибут публичный и потому любой метод имеет к нему доступ
+# print(person.__age) # атрибут частный  и при попытке вызвать метод , который чужой  этому классу - выскакивает ошибка
