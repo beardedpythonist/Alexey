@@ -1,0 +1,22 @@
+# Ошибки: 1)одинаковые имена  у методов 2) должны быть скобки  при вызове метода
+# 3) параметр при определении метода  -лишний
+# 4) ретурн лишний
+# 5) с del =  непонятно!!
+
+class Class1:
+    def __init__(self, value):
+        self.__var = value
+    def read_set_del(self):
+        print('Прочтено')
+
+    def read_set_del_1(self):
+        print('Изменено')
+
+    def read_set_del_2(self):
+        print('Удалено')
+
+c1 = Class1(5)
+c1.read_set_del()
+c1.read_set_del_1()
+c1.read_set_del_2()
+# del c1.read_set_del

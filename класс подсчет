@@ -1,0 +1,45 @@
+# не знаю как вызвать медот в другом методе (длину внутри класса)
+# не знаю как сделаьб  экземплря класса чтоб его обрабаьывал метод
+
+class podschet:
+    def __init__(self):
+        pass
+    def dlina(self, x):
+        if type(x) == str:
+            return len(x)
+        if type(x) == int:
+            x = str(x)
+            return len(x)
+
+    def stroka_chislo(self, x):
+        count_gl  = 0
+        glasn_spisok = ''
+        sogl_spisok = ''
+        count_sg = 0
+        if type(x) == str:
+            for c in x:
+                if c in 'euioa':
+                    count_gl += 1
+                    glasn_spisok = glasn_spisok + c
+                else:
+                    count_sg += 1
+                    sogl_spisok = sogl_spisok + c
+            proizw = count_gl * count_sg
+            if proizw <= len(x):
+                print(glasn_spisok)
+            else:
+                print(sogl_spisok)
+        elif type(x) == int:
+            proiz_schet = 1
+            while x != 0:
+                q = x % 10
+                if q % 2 == 0:
+                    proiz_schet *= q
+                x = x // 10
+            total = proiz_schet * len(str(x))
+            print(total)
+
+exeplar1 = podschet()
+print(exeplar1.dlina('fsdfdfsfwery'))    # задаем параметр х
+exeplar1.stroka_chislo(4561231) # задаем новый апарметр х, как сделать чтоб это было одно и тоже??
+
