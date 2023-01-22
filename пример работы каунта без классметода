@@ -1,0 +1,9 @@
+class Person:
+    count = 0
+    def __init__(self, name):
+        self.name = name
+        Person.count += 1
+
+ob1 = Person('wasja')
+ob2 =  Person('Petja')
+print(Person.count)
