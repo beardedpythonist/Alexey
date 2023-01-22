@@ -1,39 +1,23 @@
-from random import *
+class Class1:
 
-class Human:
-    counter = 0
-    ls = ['муж', 'жен']
-    list_name_m = ['Lionel McCoy', 'Charles Cross', 'John Pitz', 'Jeffry Young', 'Johnathan Randall', 'Edward wnsend']
-    list_name_zh = ['Aubrey Gilmore', 'Avice Reynolds', 'Theresa Bradford', 'Shonda Douglas', 'Karen Sanders']
-    age = range(18, 100)
-    charakter = ['холерик', 'сангвиник', 'меланхолик', 'флегматик']
+    def init(self, value):
+        self.__var = value
 
-    def __init__(self, pol, name, age, charakter):
-        self.pol = pol
-        self.name = name
-        self.age = age
-        self.charakter = charakter
-        Human.counter += 1
-    def info(self):
-        print(self.name, self.pol, self.age, self.charakter)
-        return
-    def life(self):
-        pass
+    @property
+    def read_set_del(self):
+        print('Прочтено')
+        return self.__var
 
-def sozdaniye():
-    num = randrange(2, 6)
-    for c in range(num):
-        pol = choice(Human.ls)
-        charakter = choice(Human.charakter)
-        if pol == 'жен':
-            name = choice(Human.list_name_zh)
-        else:
-            name = choice(Human.list_name_m)
-        age  = choice(Human.age)
-        x = input('введи имя экземпляра ')
-        x = Human(pol, name, age, charakter)    # создание экземпляра класса
-        x.info()
+    @read_set_del.setter
+    def read_set_del(self, value):
+        self.__var = value
+        print('Изменено')
+    @read_set_del.deleter
+    def read_set_del(self):
+        del self.__var
+        print('Удалено')
 
-sozdaniye()
-print('итого создано: ', Human.counter)
-
+c1 = Class1()
+c1.read_set_del = 35
+c1.read_set_del
+del c1.read_set_del
