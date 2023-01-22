@@ -1,0 +1,38 @@
+# пример использовнаия декоратора property
+# 1) он превращает фунцию в свойство объекта (т.е. не надо ставитьс скобки позади)
+#
+# 2) одно и тоже имя у метода .. ( а в обычном методе записи у каждого метода имена разные
+# 2) создат типа ради удобства! вместо записи ob1.age = 40 или ob1.wozrast_set(44) делаем запись: ob1.wozrast = 45
+#   Синтаксис: @property (и сразу идущая за ним фунцитя будет геттром) . перед след функией :
+#   собачка , название того же метода, точка, сеттер =
+# и фунция становится сетттром  @wozrast.setter
+# 3)  как работает делетор - не понятно ведь удаляется и  'del ob1.age '  и с помощью  ' del ob1.wozrast '
+
+class Person:
+    def __init__(self, name, age, hight):
+        self.__name = name
+        self.__age = age
+        self.__hight = hight
+
+    @property
+    def wozrast(self):
+        return self.__age
+
+    @wozrast.setter
+    def wozrast(self, age):
+        self.__age = age
+
+    @wozrast.deleter
+    def wozrast(self):
+         del self.__age
+
+
+ob1 = Person('Katja', 25, 180)
+ob1.name = 'Masha' # 1  свойство перезвписывем , а не перезапысывается, а добавляется новое !!!
+ob1.age = 18   #2 свойство
+ob1.hight = 170     # 3 свойство
+print(ob1._Person__name, ob1._Person__age)
+ob1.wozrast = 45    # меняем значение с помощью декоратора
+print(ob1.__dict__)
+del ob1.wozrast
+print(ob1.__dict__)
