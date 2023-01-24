@@ -60,6 +60,10 @@
 сравнить данные.
 
 
+# как из одного метода вызвать другой если объект еще не создан (из метода создани е = метод дата рождения)
+#  как обратиться к обекту если его имя рандомно . (чтоб сменить атрибут один  ил все)
+# как узнать и напечатать переменную объекта
+
 
 from random import *
 
@@ -71,22 +75,30 @@ class Human:
     age = range(18, 100)
     charakter = ['холерик', 'сангвиник', 'меланхолик', 'флегматик']
     ls_job = ['рабочий', 'безработный']
+    year_now = 2023
 
-    def __init__(self, pol, name, age, charakter, job):
+    def __init__(self, pol, name, age, charakter, job, capital, income, date_birth):
         self.pol = pol
         self.name = name
         self.age = age
         self.charakter = charakter
         self.job = job
+        self.capital = capital
+        self.income = income
+        self.__date_birth =  date_birth
+
         Human.counter += 1
     def info(self):
-        print(self.name, self.pol, self.age, self.charakter, self.job)
-
-    def life(self):
+        return self.name, self.pol, self.age, self.charakter, self.job, self.capital, self.income, self._Human__date_birth
+    def date_birthday():
         pass
+    def life(self, year):
+        year = year  + 1
+        return year
     @staticmethod
-    def sozdaniye():
+    def sozdaniye1():
         num = randrange(2, 6)
+        slov ={}
         for c in range(num):
             pol = choice(Human.ls)
             charakter = choice(Human.charakter)
@@ -96,9 +108,26 @@ class Human:
                 name = choice(Human.list_name_m)
             age  = choice(Human.age)
             job =  choice(Human.ls_job)
-            x = input('введи имя экземпляра ')
-            x = Human(pol, name, age, charakter, job)    # создание экземпляра класса
-            x.info() # вызов метода инфо
-Human.sozdaniye()   # вызов статического метода создание объектов
+            if job == 'рабочий':
+                income =  randint(1000, 5000)
+            else:
+                income  = randint(100, 300)
+            a =['a','b','c','d','e','f']
+            capital =  randint(1000, 10000)
+            day = randint(1, 30)
+            month = randint(1, 12)
+            year = randint(1960, 2000)
+            date_birth = str(day) + '.' + str(month) + '.' + str(year)
+            x = choice(a)  # выбор имено объекта
+            x = Human(pol, name, age, charakter, job, capital, income, date_birth)    # создание экземпляра класса
+            print(x.info()) # вызов метода инфо
+            slov[x] = x.info()
+
+Human.sozdaniye1()   # вызов статического метода создание объектов
 print('итого создано: ', Human.counter)
 
+Wasja = Human('Shonda Douglas', 'жен', 22, 'меланхолик', 'рабочий', 9520, 4323, '22.3.1986')   # как ко всем ??
+actual_year = int(input('какой сейчас год?'))
+x = actual_year - Human.year_now
+print(Wasja._Human__date_birth[-4:])
+print(int(Wasja._Human__date_birth[-4:]) + x)
