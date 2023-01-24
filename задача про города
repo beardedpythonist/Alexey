@@ -1,0 +1,95 @@
+#
+# city1, city2 = input('введите отправную  точку '), input('введите город назначения ')
+# route = city1 + '-' + city2
+# with open('routes.txt') as f1:   # создания списка  со всеми строками файла для проверки на маршрут
+#     ls = []
+
+city1, city2 = input('введите отправную  точку '), input('введите город назначения ')
+route = city1 + '-' + city2
+
+distance = int(input('введите расстояние между городами '))
+num_of_intowns = int(input('введите количество населенных пунктов на пути '))
+info_goroda = {}
+for c in range(num_of_intowns):
+    town_name = input('введите названия городов на пути ')
+    max_speed = int(input(f'макс. разрешенная скорость в городе {town_name} '))
+    track_in_towm = int(input(f'введите путь в км  внутри  города {town_name} '))
+    info_goroda[town_name] = [max_speed , track_in_towm]
+with open('routes.txt', 'a') as f:
+    f.write(route + '\n')
+    f.write(str(distance) +'km' + '\n')
+    for key, val in info_goroda.items():
+        c = str(key) + ' ' + str(val)
+        f.write(c + '\n')
+
+def speed_I_need(goroda, distance):    # расчет нужной скорости
+    time_I_have = int(input('Каким временем вы распологаете в часах? '))
+    total_time = 0
+    total_dist_towns = 0
+
+    for key, val in goroda.items():
+        time_town = val[1] / val [0]
+        total_time = total_time + time_town
+        total_dist_towns = total_dist_towns + val[1]
+    avrg_speed = (distance - total_dist_towns) / (time_I_have - total_time)   # формула вычесления средней скорости
+    avrg_speed = round(avrg_speed, 1)
+    print('ваша средняя скорость вне населенных пуктов при указанном времени: ', avrg_speed)
+speed_I_need(info_goroda, distance)
+def avr_time(goroda, distance): # расчет предполагаемого времени
+    speed_I_wish = int(input('с какой средней скоростью вы хотели бы двигаться? '))
+    total_dist_towns = 0
+    total_time = 0
+    for key, val in goroda.items():
+        time_town = val[1] / val[0]
+        total_time = total_time + time_town
+        total_dist_towns = total_dist_towns + val[1]
+    avrg_time = (distance - total_dist_towns)  / speed_I_wish + total_time
+    avrg_time = round(avrg_time, 1)
+    print('Вам понадлбиться времени на поездку: ', avrg_time, 'часов')
+avr_time(info_goroda,distance)
+
+def fuel_usage():
+    car  = input('введите марку Вашего авто ')
+    fuel = int(input('введите расход в л на 100 км '))
+    tank = int(input('введите объем бака: '))
+    with open('cars.txt', 'a') as f1:
+        f1.write(car + ',' + str(fuel) + ',' + str(tank))
+        f1.write('\n')
+    return fuel, tank
+
+# rash_bak = fuel_usage()
+rash_bak = fuel_usage()
+distance = 1600
+
+def zapravka(rash_bak, distance):
+    ostatok_na_nachalo = int(input('введите остаток топлива на начало пути: '))
+    dist_na_poln = rash_bak[1] * 100 / rash_bak[0]    # расстоян на полно баке
+    amount_AZS = int(input('сколько заправок на пути '))
+    slov = {}      # значение  = км заправки от начала
+    for c in range(1, amount_AZS + 1):
+        km = int(input(f'на каком км АЗС номер {c} '))
+        slov[c] = km
+        km_na_ostatke =  ostatok_na_nachalo * 100 / rash_bak[0]
+    if slov[1] > km_na_ostatke:
+        print('Вы не доедете на остатке до первой заправки')
+    else:
+        ls = []
+        for key, val in slov.items():   # выбираем первую заправку
+
+            if val < km_na_ostatke:
+                ls.append(val)
+        x = max(ls)   # точка первой заправки
+    dozaprawka = rash_bak[1] - (ostatok_na_nachalo - rash_bak[0] * x / 100) # первая заправка
+    print('первая заправка', dozaprawka)
+    print('на каком км первая  заправка', x)
+    while distance - x > dist_na_poln:
+        ls1 =[]
+        for key, val in slov.items():
+            if val > x and (x + dist_na_poln) > val:  # если АЗС дальше первой но не дальше чем на полном баке
+               ls1.append(val)
+               w = max(ls1)
+        print('на каком км следующая заправка ', w)
+        dozapraw_ocherd = ((w - x) * rash_bak[0]) / 100
+        x = w
+        print('сколько заправить', dozapraw_ocherd)
+zapravka(rash_bak,distance)
