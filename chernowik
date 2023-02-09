@@ -1,0 +1,55 @@
+from random import randint
+def zadacha():
+    global key
+    global spisok_zapravok
+    # все  данные только для примера
+    distance = 4000
+    consumption = 7.5
+    bak = 70
+    ostatok_na_nachalo = 20
+    dist_na_ostatke = ostatok_na_nachalo * 100 / consumption  # расстояние на остатке
+     # print(dist_na_ostatke)
+    def zapravki():  # рандомно расставляет заправки  в  среднем через каждые 25 км
+        ls =[]
+        amount_of_stations = round(distance / 25)
+        for c in range(amount_of_stations):
+            x = randint(1, distance)
+            ls.append(x)
+        ls.sort()
+        ls2 =[ x + 1  for x in range(amount_of_stations)]
+        global spisok_zapravok
+        spisok_zapravok = dict(zip(ls2, ls))
+        global kluchi
+        kluchi = dict.keys(spisok_zapravok)    # понадобяться дальше
+                # print(spisok_zapravok)
+    zapravki()
+    spisok_pitstopov = []
+    for key, val in spisok_zapravok.items():
+        if dist_na_ostatke <= val:
+            point = key-1, spisok_zapravok[key - 1]  # первая заправка (номер заправки и км, в ввиде кортежа)
+            spisok_pitstopov.append(point[0])
+            spisok_pitstopov.append(point[1])
+            break
+    dist_na_poln = bak * 100 / consumption  # расстоян на полн баке
+    dist_to_finish = distance - spisok_pitstopov[1]
+    summa_do_sled_zapr = 0
+    tochka_otscheta = spisok_pitstopov[1]
+    for key, value in spisok_zapravok.items():
+        if value >= tochka_otscheta and key > kluchi[-1]:
+            summa_do_sled_zapr += spisok_zapravok[key+1] - spisok_zapravok[key] # складывается киломатержа до последующих хаправок
+            # и если он больше чем киломаераж на полном баке , то
+            if summa_do_sled_zapr > dist_na_poln:
+                summa_do_sled_zapr =0
+                tochka_otscheta = value
+                spisok_pitstopov.append(key)
+                spisok_pitstopov.append(value)
+
+    def vyvod():
+        print(f'на маршруте с расстоянием {distance} при расходе на 100км в {consumption}'
+              ' перечень заправок  будет следующим:')
+        for c in range(len(spisok_pitstopov)):
+            print(с)
+
+
+
+zadacha()
